@@ -8,7 +8,7 @@ public class ScreenCalculator : MonoBehaviour
 
     float height;
     float width;
-    
+
 
 
     public float Height
@@ -30,10 +30,11 @@ public class ScreenCalculator : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
-        } else if(instance != this)
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
@@ -42,5 +43,5 @@ public class ScreenCalculator : MonoBehaviour
         width = height * Camera.main.aspect;
     }
 
-    
+
 }
