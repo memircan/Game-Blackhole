@@ -62,8 +62,8 @@ public class PlatformController : MonoBehaviour
 
     void nextPlatformPos()
     {
-        platformPos.x += Random.Range(3f,5f);
-        platformPos.y = Random.Range(-1.7f, 1.7f);
+        platformPos.x += Random.Range(3f,6f);
+        platformPos.y = Random.Range(-1.5f, 1.7f);
 
        
     }
