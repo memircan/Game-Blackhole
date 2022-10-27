@@ -5,7 +5,7 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
     float bgLocation;
-    float distance= 38.402f;
+    float distance = 38.402f;
 
 
     // Start is called before the first frame update
@@ -17,17 +17,17 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(bgLocation + distance < Camera.main.transform.position.x)
+        if (bgLocation + distance < Camera.main.transform.position.x)
         {
-            CopyBg();          
-        }   
+            CopyBg();
+        }
     }
-    
+
     void CopyBg()
     {
         bgLocation += (distance * 2);
         Vector2 newPos = new Vector2(bgLocation, 0);
-        transform.position=newPos;
+        transform.position = newPos;
     }
 
 }

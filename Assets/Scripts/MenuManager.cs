@@ -6,20 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    
+
     public GameObject settingTab;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PlayButton()
@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour
 
     public void QuitButton()
     {
-        Application.Quit(); 
+        Application.Quit();
     }
 
     public void SettingButton()

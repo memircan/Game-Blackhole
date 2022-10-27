@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Animator PlayerAnimator;
 
     [SerializeField]
-    public float jumpSpeed , jumpFrequency = 1f, nextJumpTime,moveSpeed ,fallSpeed;
+    public float jumpSpeed, jumpFrequency = 1f, nextJumpTime, moveSpeed, fallSpeed;
 
     [SerializeField]
     Transform groundCheckPosition;
@@ -23,15 +23,16 @@ public class PlayerController : MonoBehaviour
     bool isGrounded = false;
 
     Joystick joystick;
-
+    JumpButton jumpButton;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        jumpButton = FindObjectOfType<JumpButton>();
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
-        joystick= FindObjectOfType<Joystick>();
+        joystick = FindObjectOfType<Joystick>();
     }
 
     // Update is called once per frame
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
 #if UNITY_EDITOR
         KeyboardControl();
-        OnGroundCheck();
+        OnGroundCheck();       
 #else
         JoystickControl();
         OnGroundCheck();
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void JoystickControl()
-    {        
+    {
         PlayerRb.velocity = new Vector2(joystick.Horizontal * moveSpeed, PlayerRb.velocity.y); //yürüme. sað -> axis > 0 
         PlayerAnimator.SetFloat("PlayerSpeed", Mathf.Abs(PlayerRb.velocity.x)); //playerspeed degerine anlýk hýzýnýn mutlak degeri atanýr
 
@@ -60,6 +61,11 @@ public class PlayerController : MonoBehaviour
         else if (PlayerRb.velocity.x > 0 && !facingRight)
         {
             FlipFace();
+        }
+
+        if (jumpButton.keyDown == true && isGrounded && (nextJumpTime < Time.timeSinceLevelLoad))
+        {
+            Jump();
         }
     }
 
@@ -86,8 +92,8 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         //PlayerRb.AddForce(new Vector2(0f, jumpSpeed));
-        PlayerRb.velocity=Vector2.up * jumpSpeed;
-        
+        PlayerRb.velocity = Vector2.up * jumpSpeed;
+
     }
 
     void FlipFace()

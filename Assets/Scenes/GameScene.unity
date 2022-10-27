@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171a15d707bc3f64e87576c2d73d62fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyDown: 0
 --- !u!1 &349541072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1081,15 @@ PrefabInstance:
       value: Fixed Joystick
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: deadZone
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: axisOptions
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: handleRange
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
