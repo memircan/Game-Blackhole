@@ -22,20 +22,52 @@ public class PlayerController : MonoBehaviour
     bool facingRight = true;
     bool isGrounded = false;
 
+    Joystick joystick;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
-
+        joystick= FindObjectOfType<Joystick>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        HorizontalMove();
+
+#if UNITY_EDITOR
+        KeyboardControl();
         OnGroundCheck();
+#else
+        JoystickControl();
+        OnGroundCheck();
+#endif
+
+    }
+
+    void JoystickControl()
+    {        
+        PlayerRb.velocity = new Vector2(joystick.Horizontal * moveSpeed, PlayerRb.velocity.y); //yürüme. sað -> axis > 0 
+        PlayerAnimator.SetFloat("PlayerSpeed", Mathf.Abs(PlayerRb.velocity.x)); //playerspeed degerine anlýk hýzýnýn mutlak degeri atanýr
+
+        if (PlayerRb.velocity.x < 0 && facingRight)
+        {
+            FlipFace();
+        }
+        else if (PlayerRb.velocity.x > 0 && !facingRight)
+        {
+            FlipFace();
+        }
+    }
+
+    void KeyboardControl()
+    {
+        PlayerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, PlayerRb.velocity.y); //yürüme. sað -> axis > 0 
+        PlayerAnimator.SetFloat("PlayerSpeed", Mathf.Abs(PlayerRb.velocity.x)); //playerspeed degerine anlýk hýzýnýn mutlak degeri atanýr
+
         if (PlayerRb.velocity.x < 0 && facingRight)
         {
             FlipFace();
@@ -50,15 +82,6 @@ public class PlayerController : MonoBehaviour
             nextJumpTime = Time.timeSinceLevelLoad + jumpFrequency;
             Jump();
         }
-        
-                
-
-    }
-
-    void HorizontalMove()
-    {
-        PlayerRb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, PlayerRb.velocity.y); //yürüme. sað -> axis > 0 
-        PlayerAnimator.SetFloat("PlayerSpeed", Mathf.Abs(PlayerRb.velocity.x)); //playerspeed degerine anlýk hýzýnýn mutlak degeri atanýr
     }
     void Jump()
     {
