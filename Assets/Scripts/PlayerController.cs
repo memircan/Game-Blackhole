@@ -7,14 +7,13 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D PlayerRb;
     Animator PlayerAnimator;
 
-    [SerializeField]
-    public float jumpSpeed, jumpFrequency = 1f, nextJumpTime, moveSpeed, fallSpeed;
+    public GameObject bulletPref;
 
     [SerializeField]
-    Transform groundCheckPosition;
+    private float jumpSpeed, Frequency = 1f, nextJumpTime, nextShotTime , moveSpeed, bulletSpeed, fallSpeed, groundCheckRadius;
 
     [SerializeField]
-    float groundCheckRadius;
+    Transform groundCheckPosition , muzzle;
 
     [SerializeField]
     LayerMask groundCheckLayer;
@@ -24,7 +23,8 @@ public class PlayerController : MonoBehaviour
 
     Joystick joystick;
     JumpButton jumpButton;
-
+    ShotButton shotButton;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,15 +33,16 @@ public class PlayerController : MonoBehaviour
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
         joystick = FindObjectOfType<Joystick>();
+        shotButton = FindObjectOfType<ShotButton>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
 #if UNITY_EDITOR
         KeyboardControl();
-        OnGroundCheck();       
+        OnGroundCheck();      
 #else
         JoystickControl();
         OnGroundCheck();
@@ -65,7 +66,14 @@ public class PlayerController : MonoBehaviour
 
         if (jumpButton.keyDown == true && isGrounded && (nextJumpTime < Time.timeSinceLevelLoad))
         {
+            nextJumpTime = Time.timeSinceLevelLoad + Frequency;
             Jump();
+        }
+
+        if (shotButton.keyDown == true && (nextShotTime < Time.timeSinceLevelLoad))
+        {
+            nextShotTime = Time.timeSinceLevelLoad + Frequency;
+            ShootBullet();
         }
     }
 
@@ -85,8 +93,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetAxis("Vertical") > 0 && isGrounded && (nextJumpTime < Time.timeSinceLevelLoad))
         {
-            nextJumpTime = Time.timeSinceLevelLoad + jumpFrequency;
+            nextJumpTime = Time.timeSinceLevelLoad + Frequency;
             Jump();
+        }
+
+        if(Input.GetMouseButtonDown(0) && (nextShotTime < Time.timeSinceLevelLoad))
+        {
+            nextShotTime = Time.timeSinceLevelLoad + Frequency;
+            ShootBullet();
         }
     }
     void Jump()
@@ -111,5 +125,19 @@ public class PlayerController : MonoBehaviour
         PlayerAnimator.SetBool("isGrounded", isGrounded);
     }
 
+    void ShootBullet()
+    {
+        GameObject tempBullet;
 
+        if (facingRight == false)
+        {         
+            tempBullet = Instantiate(bulletPref, muzzle.position, Quaternion.identity);
+            tempBullet.transform.Rotate(0,0,180);
+            tempBullet.GetComponent<Rigidbody2D>().AddForce(muzzle.forward * bulletSpeed);
+        }else
+            tempBullet = Instantiate(bulletPref, muzzle.position, Quaternion.identity);
+            tempBullet.transform.Rotate(0, 0, 0);
+            tempBullet.GetComponent<Rigidbody2D>().AddForce(muzzle.forward * bulletSpeed);
+
+    }
 }
