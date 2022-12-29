@@ -10,20 +10,16 @@ public class CamMove : MonoBehaviour
     float topSpeed = 4.0f;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
         //blackhole optimization for all screen size
         transform.GetChild(0).transform.position = new Vector3(-ScreenCalculator.instance.Width, 0, -1);
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         cameraMove();
-
-        transform.GetChild(0).transform.Rotate(0f, 0f, 30f * Time.deltaTime); //blackhole rotate
-
     }
 
     void cameraMove()

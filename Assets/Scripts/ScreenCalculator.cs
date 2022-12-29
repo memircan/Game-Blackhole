@@ -29,7 +29,7 @@ public class ScreenCalculator : MonoBehaviour
 
 
     void Awake()
-    {
+    {   
         if (instance == null)
         {
             instance = this;
