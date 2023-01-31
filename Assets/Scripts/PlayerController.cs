@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D PlayerRb;
     Animator PlayerAnimator;
 
-    public GameObject bulletPref;
+    [SerializeField]
+    private GameObject bulletPref;
 
     [SerializeField]
-    private float jumpSpeed, Frequency = 1f, nextJumpTime, nextShotTime , moveSpeed, bulletSpeed, fallSpeed, groundCheckRadius;
+    private float jumpSpeed, Frequency = 1f, nextJumpTime, nextShotTime , moveSpeed, bulletSpeed, groundCheckRadius;
 
     [SerializeField]
     Transform groundCheckPosition , muzzle;
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         jumpButton = FindObjectOfType<JumpButton>();
         PlayerRb = GetComponent<Rigidbody2D>();
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour
         
 #if UNITY_EDITOR
         KeyboardControl();
-        OnGroundCheck();      
+        OnGroundCheck();
+        //JoystickControl();
 #else
         JoystickControl();
         OnGroundCheck();

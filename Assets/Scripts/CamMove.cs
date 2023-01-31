@@ -10,7 +10,7 @@ public class CamMove : MonoBehaviour
     float topSpeed = 4.0f;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         //blackhole optimization for all screen size
         transform.GetChild(0).transform.position = new Vector3(-ScreenCalculator.instance.Width, 0, -1);

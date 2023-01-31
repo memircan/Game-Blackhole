@@ -22,4 +22,6 @@ public class bulletDestroy : MonoBehaviour
     {
         Destroy(gameObject, 5f);
     }
+
+   
 }
