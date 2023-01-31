@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Platform
   - Bullet
+  - Rock
+  - Failer
   layers:
   - Default
   - TransparentFX

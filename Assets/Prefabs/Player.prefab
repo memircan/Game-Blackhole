@@ -187,7 +187,6 @@ MonoBehaviour:
   nextShotTime: 0
   moveSpeed: 5
   bulletSpeed: 400
-  fallSpeed: 0.1
   groundCheckRadius: 0.2
   groundCheckPosition: {fileID: 1925029908624983643}
   muzzle: {fileID: 1951647096689502483}
