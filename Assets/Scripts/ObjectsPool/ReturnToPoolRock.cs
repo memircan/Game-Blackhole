@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ReturnToPoolRock : MonoBehaviour
 {
-    private ObjectPool objectPool;    
+    private RockPool objectPool;    
 
     public void Start()
     {
-        objectPool=FindObjectOfType<ObjectPool>();   
+        objectPool=FindObjectOfType<RockPool>();   
     }
 
     void OnDisable()

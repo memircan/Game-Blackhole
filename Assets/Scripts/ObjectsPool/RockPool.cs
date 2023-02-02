@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ObjectPool : MonoBehaviour
+public class RockPool : MonoBehaviour
 {
     [SerializeField]
     GameObject prefab;
@@ -46,7 +46,6 @@ public class ObjectPool : MonoBehaviour
         StartCoroutine(SpawnRoutine());
     }
 
-
     public GameObject GetPooledObj() 
     {
         if(poolObjects.Count >0)
@@ -66,18 +65,13 @@ public class ObjectPool : MonoBehaviour
         obj.gameObject.SetActive( false );
     }
 
-
     public IEnumerator SpawnRoutine() 
     {
         while (true)
         {           
             GameObject obj =GetPooledObj();
-
             obj.transform.position = new Vector2(Camera.main.transform.position.x+15f,Random.Range(-3f,3.5f));
-                       
             yield return new WaitForSeconds(5f);
-
-
             ReturnToPool(obj);
         }
     }

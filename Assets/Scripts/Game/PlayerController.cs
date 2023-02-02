@@ -7,17 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D PlayerRb;
     Animator PlayerAnimator;
-
-    
-
-    [SerializeField]
-    private GameObject bulletPref;
+    BulletPool bulletPool;
 
     [SerializeField]
-    private float jumpSpeed, Frequency = 1f, nextJumpTime, nextShotTime , moveSpeed, bulletSpeed, groundCheckRadius;
+    private float jumpSpeed, Frequency = 1f, nextJumpTime, nextShotTime, moveSpeed, bulletSpeed, groundCheckRadius;
 
     [SerializeField]
-    Transform groundCheckPosition , muzzle;
+    Transform groundCheckPosition, muzzle;
 
     [SerializeField]
     LayerMask groundCheckLayer;
@@ -28,7 +24,7 @@ public class PlayerController : MonoBehaviour
     Joystick joystick;
     JumpButton jumpButton;
     ShotButton shotButton;
-    
+
 
     // Start is called before the first frame update
     void Awake()
@@ -38,12 +34,13 @@ public class PlayerController : MonoBehaviour
         PlayerAnimator = GetComponent<Animator>();
         joystick = FindObjectOfType<Joystick>();
         shotButton = FindObjectOfType<ShotButton>();
+        bulletPool = FindObjectOfType<BulletPool>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
 #if UNITY_EDITOR
         KeyboardControl();
         OnGroundCheck();
@@ -102,7 +99,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        if(Input.GetMouseButtonDown(0) && (nextShotTime < Time.timeSinceLevelLoad))
+        if (Input.GetMouseButtonDown(0) && (nextShotTime < Time.timeSinceLevelLoad))
         {
             nextShotTime = Time.timeSinceLevelLoad + Frequency;
             ShootBullet();
@@ -130,22 +127,25 @@ public class PlayerController : MonoBehaviour
 
     void ShootBullet()
     {
-        GameObject tempBullet;
-
-        tempBullet = Instantiate(bulletPref, muzzle.position, Quaternion.identity);
-        tempBullet.GetComponent<Rigidbody2D>().AddForce(muzzle.forward * bulletSpeed);
+        GameObject bullet = bulletPool.GetBullet(); //pool'dan mermi çekiyoruz 
+        bullet.transform.position = muzzle.position;
+        bullet.transform.rotation = Quaternion.identity;
+        bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.forward * bulletSpeed);
         if (facingRight == false)
-        {            
-            tempBullet.transform.Rotate(0,0,180);          
-        }else           
-            tempBullet.transform.Rotate(0, 0, 0);                  
+        {
+            bullet.transform.Rotate(0, 0, 180);
+        }
+        else
+            bullet.transform.Rotate(0, 0, 0);
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Failer")
-        {          
-            Time.timeScale = 0;          
+        {
+            Time.timeScale = 0;
         }
     }
 
