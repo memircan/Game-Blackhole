@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ReturnToPoolBullet : MonoBehaviour 
+
+public class ReturnToPoolBullet : MonoBehaviour
 {
     [SerializeField]
     private GameObject explosionPrefab;
 
     BulletPool bulletPool;
 
-    
     void Start()
     {
-        bulletPool = FindObjectOfType<BulletPool>();       
+        bulletPool = FindObjectOfType<BulletPool>();
     }
 
     private void OnEnable()
     {
-        StartCoroutine(ReturnPool());      
+        StartCoroutine(ReturnPool());
     }
 
     public IEnumerator ReturnPool()
-    {          
+    {
         yield return new WaitForSeconds(3f);
-        bulletPool.ReturnBullet(this.gameObject); 
+        bulletPool.ReturnBullet(this.gameObject);
     }
-
+    
 
     public void OnTriggerEnter2D(Collider2D collision) //objeye ateþ ettiðimizde görünmez yapýyoruz ve sýraya geri dönüyor
     {

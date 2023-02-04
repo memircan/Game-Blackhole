@@ -8,6 +8,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D PlayerRb;
     Animator PlayerAnimator;
     BulletPool bulletPool;
+    InGameManager gameManager;
+
+    Joystick joystick;
+    JumpButton jumpButton;
+    ShotButton shotButton;
 
     [SerializeField]
     private float jumpSpeed, Frequency = 1f, nextJumpTime, nextShotTime, moveSpeed, bulletSpeed, groundCheckRadius;
@@ -21,20 +26,18 @@ public class PlayerController : MonoBehaviour
     bool facingRight = true;
     bool isGrounded = false;
 
-    Joystick joystick;
-    JumpButton jumpButton;
-    ShotButton shotButton;
 
-
-    // Start is called before the first frame update
     void Awake()
     {
-        jumpButton = FindObjectOfType<JumpButton>();
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
-        joystick = FindObjectOfType<Joystick>();
-        shotButton = FindObjectOfType<ShotButton>();
+
+        gameManager=FindObjectOfType<InGameManager>();
         bulletPool = FindObjectOfType<BulletPool>();
+        
+        jumpButton = FindObjectOfType<JumpButton>();
+        shotButton = FindObjectOfType<ShotButton>();
+        joystick = FindObjectOfType<Joystick>();
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour
 #if UNITY_EDITOR
         KeyboardControl();
         OnGroundCheck();
-        //JoystickControl();
+        //JoystickControl(); for test on unity
 #else
         JoystickControl();
         OnGroundCheck();
@@ -143,9 +146,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Failer")
-        {
-            Time.timeScale = 0;
+        if (collision.tag == "Failer" || collision.tag=="Rock") //player fall or hit rock
+        {           
+            gameManager.GameFail();
         }
     }
 

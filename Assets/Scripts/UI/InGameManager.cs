@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class InGameManager : MonoBehaviour
@@ -8,24 +9,24 @@ public class InGameManager : MonoBehaviour
     [SerializeField]
     private GameObject failScreen, pauseScreen;
 
-    
-
-    // Start is called before the first frame update
-    public void Start()
-    {
-      
-    }
+    [SerializeField]
+    private Text scoreText;
+    private int score;
 
     // Update is called once per frame
     void Update()
     {
-        
+        score = (int)Camera.main.transform.position.x;
+        scoreText.text = "Score: " + score;
     }
 
 
     public void GameFail()
     {
+        Time.timeScale = 0;
         failScreen.SetActive(true);
+        Save.ScoreSave(score);
+        
     }
 
     public void GamePause()

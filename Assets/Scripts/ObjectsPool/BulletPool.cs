@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BulletPool : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public int poolSize = 20; 
+    public int poolSize = 20;
 
     private Queue<GameObject> bulletQueue;
 
@@ -25,8 +26,8 @@ public class BulletPool : MonoBehaviour
     {
         if (bulletQueue.Count > 0)
         {
-            GameObject bullet = bulletQueue.Dequeue();                      
-            bullet.SetActive(true);           
+            GameObject bullet = bulletQueue.Dequeue();
+            bullet.SetActive(true);
 
             return bullet;
         }
@@ -42,4 +43,3 @@ public class BulletPool : MonoBehaviour
         bulletQueue.Enqueue(bullet);
     }
 }
-

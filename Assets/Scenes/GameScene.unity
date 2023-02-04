@@ -442,11 +442,11 @@ RectTransform:
   m_Father: {fileID: 2030693032}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 477, y: -395}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -532, y: 37}
   m_SizeDelta: {x: 262.86, y: 262.86}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &418170460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,9 +1712,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881638003}
-  - component: {fileID: 1881638002}
   - component: {fileID: 1881638005}
   - component: {fileID: 1881638004}
+  - component: {fileID: 1881638002}
+  - component: {fileID: 1881638006}
   m_Layer: 0
   m_Name: InGameManager
   m_TagString: Untagged
@@ -1729,13 +1730,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881638001}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa83a3db551c1534bacc3d2801b6ad15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   failScreen: {fileID: 1950681979}
   pauseScreen: {fileID: 1527294756}
+  scoreText: {fileID: 1995000330}
 --- !u!4 &1881638003
 Transform:
   m_ObjectHideFlags: 0
@@ -1855,6 +1857,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881638001}
   m_Enabled: 1
+--- !u!114 &1881638006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881638001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43af9366b84556749969817f8caa4995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1950681979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,7 +2114,6 @@ GameObject:
   - component: {fileID: 1995000329}
   - component: {fileID: 1995000331}
   - component: {fileID: 1995000330}
-  - component: {fileID: 1995000332}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -2125,7 +2138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 29, y: -38.589996}
+  m_AnchoredPosition: {x: 29, y: -38.589844}
   m_SizeDelta: {x: 622.98, y: 116.82}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1995000330
@@ -2170,19 +2183,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995000328}
   m_CullTransparentMesh: 1
---- !u!114 &1995000332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995000328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43af9366b84556749969817f8caa4995, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1995000330}
 --- !u!1 &2030693028
 GameObject:
   m_ObjectHideFlags: 0
