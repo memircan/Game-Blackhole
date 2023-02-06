@@ -32,10 +32,12 @@ public class ReturnToPoolBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Rock")
         {
-            Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+            GameObject exp = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+            Destroy(exp, 2f); //destroy exp prefab after 2f sec.
             bulletPool.ReturnBullet(this.gameObject);
             collision.gameObject.SetActive(false);
         }
     }
 
+   
 }

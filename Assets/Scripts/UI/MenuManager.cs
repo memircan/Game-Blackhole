@@ -6,39 +6,59 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField]
+    Sprite[] musicIcon;
 
-    public GameObject settingTab;
+    [SerializeField]
+    Button musicButton;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if(Save.isMusicSave() == false)
+        {
+            Save.MusicOnSetValue(1);
+        }
+        CheckMusicSetting();
     }
 
     public void PlayButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitButton()
     {
         Application.Quit();
     }
-
-    public void SettingButton()
+  
+    public void Music()
     {
-        settingTab.SetActive(true);
+        if (Save.MusicOnGetValue() == 1)
+        {
+            Save.MusicOnSetValue(0);
+            MusicManager.instance.MusicPlay(false);
+            musicButton.image.sprite = musicIcon[0];
+        }
+        else
+        {
+            Save.MusicOnSetValue(1);
+            MusicManager.instance.MusicPlay(true);
+            musicButton.image.sprite = musicIcon[1];
+        }
     }
 
-    public void CloseTab()
+
+    void CheckMusicSetting()
     {
-        settingTab.SetActive(false);
+        if (Save.MusicOnGetValue() == 1)
+        {
+            musicButton.image.sprite = musicIcon[1];
+            MusicManager.instance.MusicPlay(true);
+        }
+        else
+        {
+            musicButton.image.sprite = musicIcon[0];
+            MusicManager.instance.MusicPlay(false);
+        }
     }
 }
