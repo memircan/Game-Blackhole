@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D PlayerRb;
     Animator PlayerAnimator;
+    AudioSource audioSource;
+
     BulletPool bulletPool;
     InGameManager gameManager;
 
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        audioSource= GetComponent<AudioSource>();
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
 
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             nextShotTime = Time.timeSinceLevelLoad + Frequency;
             ShootBullet();
+            audioSource.Play();
         }
     }
 
@@ -106,6 +110,7 @@ public class PlayerController : MonoBehaviour
         {
             nextShotTime = Time.timeSinceLevelLoad + Frequency;
             ShootBullet();
+            audioSource.Play();
         }
     }
     void Jump()

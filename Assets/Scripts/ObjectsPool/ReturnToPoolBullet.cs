@@ -28,7 +28,7 @@ public class ReturnToPoolBullet : MonoBehaviour
     }
     
 
-    public void OnTriggerEnter2D(Collider2D collision) //objeye ateþ ettiðimizde görünmez yapýyoruz ve sýraya geri dönüyor
+    public void OnTriggerEnter2D(Collider2D collision) //if bullet hit rock, add the bullet in que and setactiive false
     {
         if (collision.gameObject.tag == "Rock")
         {
