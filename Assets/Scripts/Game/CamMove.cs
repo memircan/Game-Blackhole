@@ -13,11 +13,12 @@ public class CamMove : MonoBehaviour
     void Start()
     {
         //blackhole optimization for all screen size
-         transform.GetChild(0).transform.position = new Vector3(-ScreenCalculator.instance.Width, 0, -1);
+        transform.GetChild(0).transform.position = new Vector3(-ScreenCalculator.instance.Width, 0, -1);
+        
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         cameraMove();
     }

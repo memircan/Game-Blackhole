@@ -6,18 +6,19 @@ public class Background : MonoBehaviour
 {
     float bgLocation;
     float distance = 38.402f;
-
+    Camera _camera;
 
     // Start is called before the first frame update
     void Start()
     {
         bgLocation = transform.position.x;
+        _camera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (bgLocation + distance < Camera.main.transform.position.x)
+        if (bgLocation + distance <_camera.transform.position.x)
         {
             CopyBg();
         }

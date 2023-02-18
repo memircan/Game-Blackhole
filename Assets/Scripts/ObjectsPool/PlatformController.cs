@@ -13,19 +13,25 @@ public class PlatformController : MonoBehaviour
 
     List<GameObject> platforms = new List<GameObject>();
 
+    Camera _camera;
     Vector2 platformPos;
     Vector2 playerPos;
+
+    int poolSize = 8;
+    int halfSize = 4;
 
     // Start is called before the first frame update
     void Start()
     {
         PlatformCreate();
+        _camera = Camera.main;
+        
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if (platforms[platforms.Count - 1].transform.position.x < Camera.main.transform.position.x + ScreenCalculator.instance.Width)
+        if (platforms[platforms.Count - 1].transform.position.x < _camera.transform.position.x + ScreenCalculator.instance.Width)
         {
             PlatformMove();
         }
@@ -37,7 +43,7 @@ public class PlatformController : MonoBehaviour
         playerPos = new Vector2(0, 0.5f);
         GameObject player = Instantiate(playerPref, playerPos, Quaternion.identity);
 
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             GameObject platform = Instantiate(platformPref, platformPos, Quaternion.identity);
             platforms.Add(platform);
@@ -48,13 +54,13 @@ public class PlatformController : MonoBehaviour
 
     public void PlatformMove()
     {
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < halfSize; i++)
         {
             GameObject temp;
-            temp = platforms[i + 8];
-            platforms[i + 8] = platforms[i];
+            temp = platforms[i + halfSize];
+            platforms[i + halfSize] = platforms[i];
             platforms[i] = temp;
-            platforms[i + 8].transform.position = platformPos;
+            platforms[i + halfSize].transform.position = platformPos;
             nextPlatformPos();
         }
     }

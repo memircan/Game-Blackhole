@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FullScript : MonoBehaviour
+public class FullScreen : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
+
+
+
     {
-        SpriteRenderer  spriteRenderer = GetComponent<SpriteRenderer>();
+        //Screen.SetResolution(Screen.currentResolution.width / 2, Screen.currentResolution.height / 2, true);
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Vector2 tempScale = transform.localScale;
 
         float spriteWidth = spriteRenderer.size.x;

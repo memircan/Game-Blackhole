@@ -20,16 +20,19 @@ public class InGameManager : MonoBehaviour
     private Text scoreText,highScore;
     private int score;
 
+    Camera _camera;
+
     private void Start()
     {
         CheckMusicSetting();
+        _camera= Camera.main;
     }
 
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        score = (int)Camera.main.transform.position.x;
+        score = (int)_camera.transform.position.x;
         scoreText.text = "Score: " + score;       
     }
 

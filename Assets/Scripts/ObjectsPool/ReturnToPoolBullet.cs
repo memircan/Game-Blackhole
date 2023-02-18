@@ -16,9 +16,10 @@ public class ReturnToPoolBullet : MonoBehaviour
         bulletPool = FindObjectOfType<BulletPool>();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         StartCoroutine(ReturnPool());
+        //Invoke("ReturnPool", 3f);
     }
 
     public IEnumerator ReturnPool()
@@ -26,7 +27,10 @@ public class ReturnToPoolBullet : MonoBehaviour
         yield return new WaitForSeconds(3f);
         bulletPool.ReturnBullet(this.gameObject);
     }
-    
+
+
+
+
 
     public void OnTriggerEnter2D(Collider2D collision) //if bullet hit rock, add the bullet in que and setactiive false
     {

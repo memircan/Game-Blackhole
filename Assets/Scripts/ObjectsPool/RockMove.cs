@@ -17,6 +17,7 @@ public class RockMove : MonoBehaviour
     {
         //rb.AddForce(new Vector2(-(rb.velocity.x+5), 0));
         rb.velocity = new Vector2(-5, 0);
+        rb.AddTorque(0.1f);
     }
 
 }
