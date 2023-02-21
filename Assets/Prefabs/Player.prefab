@@ -181,12 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6138fa95ae568b439f5e4e2f804bd91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSpeed: 8
-  Frequency: 1
-  nextJumpTime: 0
-  nextShotTime: 0
+  jumpForce: 8
   moveSpeed: 5
-  bulletSpeed: 400
+  bulletSpeed: 7
   groundCheckRadius: 0.2
   groundCheckPosition: {fileID: 1925029908624983643}
   muzzle: {fileID: 1951647096689502483}

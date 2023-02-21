@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +18,10 @@ public class PlayerController : MonoBehaviour
     ShotButton shotButton;
 
     [SerializeField]
-    private float jumpSpeed, Frequency = 1f, nextJumpTime, nextShotTime, moveSpeed, bulletSpeed, groundCheckRadius;
+    private float jumpForce, moveSpeed, bulletSpeed,groundCheckRadius;
+
+    float Frequency = 1f; //for shot and jump 
+    float nextJumpTime, nextShotTime;
 
     [SerializeField]
     Transform groundCheckPosition, muzzle;
@@ -115,7 +119,8 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        PlayerRb.velocity = Vector2.up * jumpSpeed;
+        PlayerRb.velocity = Vector2.up * jumpForce;
+        //PlayerRb.AddForce(Vector2.up * 300f);
     }
 
     void FlipFace()
@@ -135,10 +140,9 @@ public class PlayerController : MonoBehaviour
 
     void ShootBullet()
     {
-        GameObject bullet = bulletPool.GetBullet(); //pool'dan mermi çekiyoruz 
-        bullet.transform.position = muzzle.position;
-        bullet.transform.rotation = Quaternion.identity;
-        bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.forward * bulletSpeed);
+        GameObject bullet = bulletPool.GetBullet(); 
+        bullet.transform.position = muzzle.position;       
+        bullet.GetComponent<Rigidbody2D>().velocity=muzzle.forward * bulletSpeed;
         if (facingRight == false)
         {
             bullet.transform.Rotate(0, 0, 180);

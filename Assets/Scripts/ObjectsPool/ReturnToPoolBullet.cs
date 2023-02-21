@@ -7,17 +7,21 @@ using UnityEngine.Pool;
 public class ReturnToPoolBullet : MonoBehaviour
 {
     [SerializeField]
-    private GameObject explosionPrefab;
-
+    GameObject explosionPrefab;
+    Animation _anim;   
+    
     BulletPool bulletPool;
 
-    void Start()
+    public void Start()
     {
         bulletPool = FindObjectOfType<BulletPool>();
+        Animation _anim = explosionPrefab.GetComponent<Animation>();
+        
     }
 
     void OnEnable()
     {
+        
         StartCoroutine(ReturnPool());
         //Invoke("ReturnPool", 3f);
     }
@@ -28,20 +32,23 @@ public class ReturnToPoolBullet : MonoBehaviour
         bulletPool.ReturnBullet(this.gameObject);
     }
 
-
-
-
-
     public void OnTriggerEnter2D(Collider2D collision) //if bullet hit rock, add the bullet in que and setactiive false
     {
         if (collision.gameObject.tag == "Rock")
         {
-            GameObject exp = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
-            Destroy(exp, 2f); //destroy exp prefab after 2f sec.
+            //GameObject exp = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+            //Destroy(exp, 2f); //destroy exp prefab after 2f sec.
+
+
+            //explosionPrefab.transform.position = gameObject.transform.position;
+            //explosionPrefab.SetActive(true);
+            //_anim.Play();
+            
             bulletPool.ReturnBullet(this.gameObject);
             collision.gameObject.SetActive(false);
         }
     }
+
 
    
 }

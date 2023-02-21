@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class CamMove : MonoBehaviour
 {
+    [SerializeField]
+    GameObject blachole;
 
     float speed = 2f;
     float acceleretion = 0.05f;
-    float topSpeed = 4.0f;
+    float topSpeed = 3.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         //blackhole optimization for all screen size
-        transform.GetChild(0).transform.position = new Vector3(-ScreenCalculator.instance.Width, 0, -1);
-        
+        blachole.transform.position = new Vector3(-ScreenCalculator.instance.Width, 0, -1);      
     }
 
-    // Update is called once per frame
     void Update()
-    {
+    {        
         cameraMove();
     }
 
     void cameraMove()
-    {
-        transform.position += transform.right * speed * Time.deltaTime;
+    {        
         speed += acceleretion * Time.deltaTime;
-
-        if (speed > topSpeed)
-        {
-            speed = topSpeed;
-        }
+        speed = Mathf.Min(speed, topSpeed);
+        transform.position += transform.right * speed * Time.deltaTime;
+        
     }
 }
