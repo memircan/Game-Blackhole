@@ -9,8 +9,6 @@ public class ScreenCalculator : MonoBehaviour
     float height;
     float width;
 
-
-
     public float Height
     {
         get
@@ -27,9 +25,8 @@ public class ScreenCalculator : MonoBehaviour
         }
     }
 
-
     void Awake()
-    {   
+    {
         if (instance == null)
         {
             instance = this;
@@ -42,6 +39,4 @@ public class ScreenCalculator : MonoBehaviour
         height = Camera.main.orthographicSize;
         width = height * Camera.main.aspect;
     }
-
-
 }

@@ -17,8 +17,8 @@ public class PlatformController : MonoBehaviour
     Vector2 platformPos;
     Vector2 playerPos;
 
-    int poolSize = 8;
-    int halfSize = 4;
+    int poolSize = 10;
+    int halfSize = 5;
 
     // Start is called before the first frame update
     void Start()

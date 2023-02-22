@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         OnGroundCheck();
         JoystickControl();
-        KeyboardControl();
+        //KeyboardControl();
     }
 
     void JoystickControl()
