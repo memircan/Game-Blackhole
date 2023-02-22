@@ -5,7 +5,7 @@ using UnityEngine;
 public class Background : MonoBehaviour
 {
     float bgLocation;
-    float distance = 38.4028f; //difference between x points
+    float distance = 38.402f; //difference between x points
     Camera _camera;
 
     // Start is called before the first frame update

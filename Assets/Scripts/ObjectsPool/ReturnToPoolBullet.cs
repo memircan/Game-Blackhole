@@ -8,22 +8,17 @@ public class ReturnToPoolBullet : MonoBehaviour
 {
     [SerializeField]
     GameObject explosionPrefab;
-    Animation _anim;   
-    
+
     BulletPool bulletPool;
 
-    public void Start()
+    void Start()
     {
         bulletPool = FindObjectOfType<BulletPool>();
-        Animation _anim = explosionPrefab.GetComponent<Animation>();
-        
     }
 
     void OnEnable()
-    {
-        
+    {       
         StartCoroutine(ReturnPool());
-        //Invoke("ReturnPool", 3f);
     }
 
     public IEnumerator ReturnPool()
@@ -36,19 +31,11 @@ public class ReturnToPoolBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Rock")
         {
-            //GameObject exp = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
-            //Destroy(exp, 2f); //destroy exp prefab after 2f sec.
+            GameObject exp = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+            Destroy(exp, 2f); //destroy exp prefab after 2f sec.;
 
-
-            //explosionPrefab.transform.position = gameObject.transform.position;
-            //explosionPrefab.SetActive(true);
-            //_anim.Play();
-            
             bulletPool.ReturnBullet(this.gameObject);
             collision.gameObject.SetActive(false);
         }
-    }
-
-
-   
+    }   
 }

@@ -124,10 +124,10 @@ BoxCollider2D:
   m_Offset: {x: 0.176927, y: -0.07301744}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.63, y: 0.32}
+    newSize: {x: 0.63, y: 0.32}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -167,4 +167,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb66235e6442b549bec460fd3fb6d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 7534024506521334068, guid: 70c1278d7b6b20b46a22caff5280a7ea, type: 3}
+  explosionPrefab: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}

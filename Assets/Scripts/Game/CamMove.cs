@@ -17,7 +17,7 @@ public class CamMove : MonoBehaviour
         blachole.transform.position = new Vector3(-ScreenCalculator.instance.Width, 0, -1);      
     }
 
-    void Update()
+    void LateUpdate()
     {        
         cameraMove();
     }

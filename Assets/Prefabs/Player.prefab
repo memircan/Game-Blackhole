@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 4375530823977370405}
   - component: {fileID: 2486883997473457748}
   - component: {fileID: 9100024907282135514}
-  - component: {fileID: 3956938695791407174}
   - component: {fileID: 9100024907282135515}
   - component: {fileID: 284752374234265266}
+  - component: {fileID: 3956938695791407174}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -169,27 +169,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3956938695791407174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5968927471587072598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6138fa95ae568b439f5e4e2f804bd91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 8
-  moveSpeed: 5
-  bulletSpeed: 7
-  groundCheckRadius: 0.2
-  groundCheckPosition: {fileID: 1925029908624983643}
-  muzzle: {fileID: 1951647096689502483}
-  groundCheckLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!95 &9100024907282135515
 Animator:
   serializedVersion: 4
@@ -306,6 +285,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3956938695791407174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968927471587072598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6138fa95ae568b439f5e4e2f804bd91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 8
+  moveSpeed: 5
+  bulletSpeed: 7
+  groundCheckRadius: 0.2
+  groundCheckPosition: {fileID: 1925029908624983643}
+  muzzle: {fileID: 1951647096689502483}
+  groundCheckLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8688356314847959697
 GameObject:
   m_ObjectHideFlags: 0

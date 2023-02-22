@@ -50,16 +50,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-#if UNITY_EDITOR
-        KeyboardControl();
         OnGroundCheck();
-        //JoystickControl(); for test on unity
-#else
         JoystickControl();
-        OnGroundCheck();
-#endif
-
+        KeyboardControl();
     }
 
     void JoystickControl()

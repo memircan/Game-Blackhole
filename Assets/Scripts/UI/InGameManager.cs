@@ -33,16 +33,15 @@ public class InGameManager : MonoBehaviour
     void LateUpdate()
     {
         score = (int)_camera.transform.position.x;
-        scoreText.text = "Score: " + score;       
+        scoreText.text = $"Score: {score}";
     }
-
 
     public void GameFail()
     {
         Time.timeScale = 0;
         failScreen.SetActive(true);
-        Save.ScoreSave(score);
-        highScore.text = "High Score is " + Save.GetScore().ToString() + "!";
+        Save.ScoreSave(score);       
+        highScore.text = $"High Score is { Save.GetScore()}!";
         
     }
 

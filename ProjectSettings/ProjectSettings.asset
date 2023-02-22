@@ -165,7 +165,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 22
+  AndroidMinSdkVersion: 23
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -415,7 +415,10 @@ PlayerSettings:
     iPhone: 1
     tvOS: 1
   m_BuildTargetGroupLightmapEncodingQuality: []
-  m_BuildTargetGroupLightmapSettings: []
+  m_BuildTargetGroupLightmapSettings:
+  - m_BuildTarget: Android
+    m_TextureStreamingEnabled: 0
+    m_TextureStreamingPriority: 0
   m_BuildTargetNormalMapEncoding: []
   m_BuildTargetDefaultTextureCompressionFormat:
   - m_BuildTarget: Android
